@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#92A3D2"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:id="@+id/EditNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        />
+
+    <EditText
+        android:id="@+id/EditName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="4dp"
+        android:ems="8"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@id/EditNameLabel"
+        app:layout_constraintStart_toEndOf="@id/EditNameLabel" />
+
+    <TextView
+        android:id="@+id/DateReceivedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Date Received: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@id/EditNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/EditNameLabel" />
+
+    <EditText
+        android:id="@+id/EditDateReceived"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="4dp"
+        android:ems="6"
+        android:inputType="date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@id/DateReceivedLabel"
+        app:layout_constraintStart_toEndOf="@id/DateReceivedLabel"
+        tools:autofillHints="Date Received" />
+
+    <Button
+        android:id="@+id/SelectDateReceived"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonColor"
+        android:insetLeft="8dp"
+        app:icon="@drawable/ic_baseline_calendar_today_24"
+        app:layout_constraintBottom_toBottomOf="@id/EditDateReceived"
+        app:layout_constraintStart_toEndOf="@id/EditDateReceived" />
+
+    <TextView
+        android:id="@+id/SpeciesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Species: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@id/EditNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/EditDateReceived" />
+
+    <Spinner
+        android:id="@+id/SpeciesSpinner"
+        android:layout_width="167dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/SpeciesLabel"
+        app:layout_constraintStart_toEndOf="@+id/SpeciesLabel" />
+
+    <TextView
+    android:id="@+id/GenderLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:layout_marginStart="20dp"
+    android:text="Gender: "
+    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+    app:layout_constraintStart_toEndOf="@id/SpeciesSpinner"
+    app:layout_constraintTop_toBottomOf="@+id/EditDateReceived" />
+
+    <Spinner
+        android:id="@+id/GenderSpinner"
+        android:layout_width="167dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/SpeciesLabel"
+        app:layout_constraintStart_toEndOf="@+id/GenderLabel" />
+
+    <TextView
+        android:id="@+id/StatusLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Status: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@id/SpeciesLabel"
+        app:layout_constraintTop_toBottomOf="@+id/SpeciesLabel" />
+
+    <Spinner
+        android:id="@+id/StatusSpinner"
+        android:layout_width="167dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/SpeciesLabel"
+        app:layout_constraintStart_toEndOf="@+id/StatusLabel" />
+
+    <TextView
+        android:id="@+id/GroupLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Group: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@id/GenderLabel"
+        app:layout_constraintTop_toBottomOf="@+id/GenderSpinner" />
+
+    <Spinner
+        android:id="@+id/GroupSpinner"
+        android:layout_width="167dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/GroupLabel"
+        app:layout_constraintStart_toEndOf="@+id/GenderLabel" />
+
+    <TextView
+        android:id="@+id/NotesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Notes: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintStart_toStartOf="@id/StatusLabel"
+        app:layout_constraintTop_toBottomOf="@+id/StatusLabel" />
+
+    <EditText
+        android:id="@+id/InputNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:lines="2"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/NotesLabel"
+        app:layout_constraintStart_toEndOf="@+id/NotesLabel" />
+
+    <TextView
+        android:id="@+id/FeedingsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feedings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintTop_toBottomOf="@id/NotesLabel"
+        app:layout_constraintStart_toStartOf="@id/EditNameLabel"
+        android:layout_marginTop="116dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:listitem="@layout/part_list_item"
+        android:padding="@dimen/big_padding"
+        app:layout_constraintTop_toBottomOf="@id/FeedingsLabel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

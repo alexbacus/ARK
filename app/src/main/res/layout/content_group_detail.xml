@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#92A3D2"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:id="@+id/EditNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+         />
+
+    <EditText
+        android:id="@+id/EditNameEditor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="4dp"
+        android:ems="8"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintBottom_toBottomOf="@id/EditNameLabel"
+        app:layout_constraintStart_toEndOf="@id/EditNameLabel" />
+
+    <TextView
+        android:id="@+id/ShowFeedingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show on Feeding List:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintTop_toBottomOf="@id/EditNameLabel"
+        app:layout_constraintStart_toStartOf="@id/EditNameLabel"
+        android:layout_marginTop="116dp"/>
+
+    <CheckBox
+        android:id="@+id/ShowFeedingCheck"
+        android:layout_width="37dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="12dp"
+        android:scaleX="5.0"
+        android:scaleY="5.0"
+        app:layout_constraintBottom_toBottomOf="@id/ShowFeedingLabel"
+        app:layout_constraintStart_toEndOf="@id/ShowFeedingLabel"
+        android:onClick="setShowOnFeeding" />
+
+    <TextView
+        android:id="@+id/AnimalsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Animals"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintTop_toBottomOf="@id/ShowFeedingLabel"
+        app:layout_constraintStart_toStartOf="@id/EditNameLabel"
+        android:layout_marginTop="116dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:listitem="@layout/part_list_item"
+        android:padding="@dimen/big_padding"
+        app:layout_constraintTop_toBottomOf="@id/AnimalsLabel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
