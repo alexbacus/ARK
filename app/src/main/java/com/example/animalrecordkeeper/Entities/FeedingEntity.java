@@ -9,13 +9,15 @@ public class FeedingEntity {
     private int feedingId;
 
     private String date;
+    private String time;
     private int weight;
     private String notes;
     private int animalId;
 
-    public FeedingEntity(int feedingId, String date, int weight, String notes, int animalId) {
+    public FeedingEntity(int feedingId, String date, String time, int weight, String notes, int animalId) {
         this.feedingId = feedingId;
         this.date = date;
+        this.time = time;
         this.weight = weight;
         this.notes = notes;
         this.animalId = animalId;
@@ -35,6 +37,14 @@ public class FeedingEntity {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getWeight() {

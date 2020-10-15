@@ -18,7 +18,7 @@ public interface FeedingDAO {
     @Query("DELETE FROM feeding_table")
     void deleteAllFeedings();
 
-    @Query("SELECT * FROM feeding_table ORDER BY feedingId ASC")
+    @Query("SELECT * FROM feeding_table ORDER BY feedingId DESC")
     LiveData<List<FeedingEntity>> getAllFeedings();
 
 //    @Query("UPDATE feeding_table SET basicStatus = 2 WHERE feedingId == :id")

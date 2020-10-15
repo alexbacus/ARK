@@ -64,7 +64,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     public void onBindViewHolder(AnimalAdapter.AnimalViewHolder holder, int position) {
         if (mAnimals != null) {
             AnimalEntity current = mAnimals.get(position);
-            String text = current.getName() + ", " + current.getGender() + ", ";
+            String text = current.getName() + ", " + current.getSpecies() + ", " + current.getGender();
             holder.animalItemView.setText(text);
         }
         else {

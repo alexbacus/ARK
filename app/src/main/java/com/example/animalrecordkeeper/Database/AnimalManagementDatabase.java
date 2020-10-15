@@ -18,7 +18,7 @@ import com.example.animalrecordkeeper.Entities.GroupEntity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {GroupEntity.class, AnimalEntity.class, FeedingEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {GroupEntity.class, AnimalEntity.class, FeedingEntity.class}, version = 2, exportSchema = false)
 public abstract class AnimalManagementDatabase extends RoomDatabase {
     public abstract GroupDAO groupDAO();
     public abstract AnimalDAO animalDAO();
@@ -26,9 +26,9 @@ public abstract class AnimalManagementDatabase extends RoomDatabase {
 
     private static volatile AnimalManagementDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static AnimalManagementDatabase getDatabase(final Context context) {
+    public static AnimalManagementDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AnimalManagementDatabase.class) {
                 if (INSTANCE == null) {
