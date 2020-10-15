@@ -23,4 +23,7 @@ public interface AnimalDAO {
 
     @Query("UPDATE animal_table SET basicStatus = 2 WHERE animalId == :id")
     void deleteById(int id);
+
+    @Query("SELECT * FROM animal_table WHERE name LIKE :name OR species LIKE :name ORDER BY animalId ASC")
+    LiveData<List<AnimalEntity>> getAnimalByName(String name);
 }

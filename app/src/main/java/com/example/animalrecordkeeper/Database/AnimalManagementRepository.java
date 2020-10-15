@@ -20,9 +20,10 @@ public class AnimalManagementRepository {
     private LiveData<List<GroupEntity>> mAllGroups;
     private LiveData<List<AnimalEntity>> mAllAnimals;
     private LiveData<List<FeedingEntity>> mAllFeedings;
+    AnimalManagementDatabase db;
 
     public AnimalManagementRepository(Application application) {
-        AnimalManagementDatabase db = AnimalManagementDatabase.getDatabase(application);
+        db = AnimalManagementDatabase.getDatabase(application);
         mGroupDao = db.groupDAO();
         mAllGroups = mGroupDao.getAllGroups();
         mAnimalDao = db.animalDAO();
@@ -57,12 +58,6 @@ public class AnimalManagementRepository {
         });
     }
 
-//    public void deleteFeeding(int id) {
-//        AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
-//            mFeedingDao.deleteById(id);
-//        });
-//    }
-
     public void deleteAnimal(int id) {
         AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
             mAnimalDao.deleteById(id);
@@ -73,5 +68,10 @@ public class AnimalManagementRepository {
         AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
             mGroupDao.deleteById(id);
         });
+    }
+
+    public LiveData<List<AnimalEntity>> searchAnimals(String name) {
+        mAnimalDao = db.animalDAO();
+        return mAnimalDao.getAnimalByName(name);
     }
 }

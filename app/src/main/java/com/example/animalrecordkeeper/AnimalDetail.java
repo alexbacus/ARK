@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,8 +23,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.animalrecordkeeper.DAO.GroupDAO;
-import com.example.animalrecordkeeper.Database.AnimalManagementDatabase;
 import com.example.animalrecordkeeper.Entities.AnimalEntity;
 import com.example.animalrecordkeeper.Entities.FeedingEntity;
 import com.example.animalrecordkeeper.Entities.GroupEntity;
@@ -34,7 +31,6 @@ import com.example.animalrecordkeeper.ViewModel.FeedingViewModel;
 import com.example.animalrecordkeeper.ViewModel.GroupViewModel;
 import com.example.animalrecordkeeper.ui.AnimalAdapter;
 import com.example.animalrecordkeeper.ui.FeedingAdapter;
-import com.example.animalrecordkeeper.ui.GroupAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

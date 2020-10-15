@@ -28,4 +28,5 @@ public class AnimalViewModel extends AndroidViewModel {
     public int lastID(){
         return mAllAnimals.getValue().size();
     }
+    public LiveData<List<AnimalEntity>> searchAnimals(String name) { return mRepository.searchAnimals(name); }
 }
