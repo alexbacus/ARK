@@ -207,6 +207,7 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("gender", gender);
         intent.putExtra("healthStatus", status);
         intent.putExtra("notes", note);
+        intent.putExtra("recentFeeding", getIntent().getStringExtra("recentFeeding"));
         intent.putExtra("animalId", id);
         int groupId = 0;
         if (!group.isEmpty() && group != "None") {
@@ -221,8 +222,7 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
         else if (!group.isEmpty() && group == "None") {
             groupId = 0;
         }
-
-        AnimalEntity animal = new AnimalEntity(id, name, received, species, gender, status, groupId, note, basicStatus);
+        AnimalEntity animal = new AnimalEntity(id, name, received, species, gender, status, groupId, note, getIntent().getStringExtra("recentFeeding"), basicStatus);
         mAnimalViewModel.insert(animal);
         setResult(RESULT_OK, intent);
         finish();

@@ -17,8 +17,9 @@ public class AnimalEntity {
     private int groupId;
     private String notes;
     private int basicStatus;
+    private String recentFeeding;
 
-    public AnimalEntity(int animalId, String name, String dateReceived, String species, String gender, String healthStatus, int groupId, String notes, int basicStatus) {
+    public AnimalEntity(int animalId, String name, String dateReceived, String species, String gender, String healthStatus, int groupId, String notes, String recentFeeding, int basicStatus) {
         this.animalId = animalId;
         this.name = name;
         this.dateReceived = dateReceived;
@@ -27,6 +28,7 @@ public class AnimalEntity {
         this.healthStatus = healthStatus;
         this.groupId = groupId;
         this.notes = notes;
+        this.recentFeeding = recentFeeding;
         this.basicStatus = basicStatus;
     }
 
@@ -101,4 +103,6 @@ public class AnimalEntity {
     public void setBasicStatus(int basicStatus) {
         this.basicStatus = basicStatus;
     }
+
+    public String getRecentFeeding() { return recentFeeding; }
 }

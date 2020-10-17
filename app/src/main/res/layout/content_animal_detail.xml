@@ -185,7 +185,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/part_list_item"
         android:padding="@dimen/big_padding"
         app:layout_constraintTop_toBottomOf="@id/FeedingsLabel"

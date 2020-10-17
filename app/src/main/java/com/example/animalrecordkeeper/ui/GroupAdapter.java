@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animalrecordkeeper.Entities.GroupEntity;
+import com.example.animalrecordkeeper.FeedingAnimals;
 import com.example.animalrecordkeeper.GroupDetail;
+import com.example.animalrecordkeeper.ManageGroupsActivity;
 import com.example.animalrecordkeeper.R;
 
 import java.util.List;
@@ -27,7 +29,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     final GroupEntity current = mGroups.get(position);
-                    Intent intent = new Intent(context, GroupDetail.class);
+                    Intent intent;
+                    if(context.getClass() == ManageGroupsActivity.class) {
+                        intent = new Intent(context, GroupDetail.class);
+                    }
+                    else {
+                        intent = new Intent(context, FeedingAnimals.class);
+                    }
                     intent.putExtra("name", current.getName());
                     intent.putExtra("groupId", current.getGroupId());
                     intent.putExtra("onFeedingList", current.getOnFeedingList());

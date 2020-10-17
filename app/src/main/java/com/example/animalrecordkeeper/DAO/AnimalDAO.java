@@ -26,4 +26,10 @@ public interface AnimalDAO {
 
     @Query("SELECT * FROM animal_table WHERE name LIKE :name OR species LIKE :name ORDER BY animalId ASC")
     LiveData<List<AnimalEntity>> getAnimalByName(String name);
+
+    @Query("SELECT * FROM animal_table WHERE groupId == :id ORDER BY animalId ASC")
+    LiveData<List<AnimalEntity>> getAnimalsByGroupId(int id);
+
+    @Query("UPDATE animal_table SET recentFeeding = :recentFeeding WHERE animalId == :id")
+    void updateRecentFeeding(String recentFeeding, int id);
 }

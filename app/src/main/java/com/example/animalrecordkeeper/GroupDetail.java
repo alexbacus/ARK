@@ -37,13 +37,13 @@ public class GroupDetail extends AppCompatActivity {
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_group_detail);
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_group_detail);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         groupName = findViewById(R.id.EditNameEditor);
         showOnFeedingCheck = findViewById(R.id.ShowFeedingCheck);

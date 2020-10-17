@@ -18,7 +18,7 @@ import com.example.animalrecordkeeper.Entities.GroupEntity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {GroupEntity.class, AnimalEntity.class, FeedingEntity.class}, version = 2, exportSchema = false)
+@Database(entities = {GroupEntity.class, AnimalEntity.class, FeedingEntity.class}, version = 3, exportSchema = false)
 public abstract class AnimalManagementDatabase extends RoomDatabase {
     public abstract GroupDAO groupDAO();
     public abstract AnimalDAO animalDAO();
@@ -36,6 +36,7 @@ public abstract class AnimalManagementDatabase extends RoomDatabase {
                             AnimalManagementDatabase.class, "animal_management_database")
                             .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
+                            .allowMainThreadQueries()
                             .build();
                 }
             }

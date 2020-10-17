@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#92A3D2"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+    android:id="@+id/DateLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="80dp"
+    android:text="Date: "
+    android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/EditDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="6"
+        android:inputType="date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintBottom_toBottomOf="@id/DateLabel"
+        app:layout_constraintStart_toEndOf="@id/DateLabel"
+        tools:autofillHints="Date" />
+
+    <Button
+        android:id="@+id/SelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonColor"
+        android:insetLeft="8dp"
+        app:cornerRadius="8dp"
+        app:icon="@drawable/ic_baseline_calendar_today_24"
+        app:layout_constraintBottom_toBottomOf="@id/EditDate"
+        app:layout_constraintStart_toEndOf="@id/EditDate" />
+
+    <TextView
+        android:id="@+id/TimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Time: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintStart_toStartOf="@id/DateLabel"
+        app:layout_constraintTop_toBottomOf="@id/DateLabel" />
+
+    <EditText
+        android:id="@+id/EditTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="6"
+        android:inputType="date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintBottom_toBottomOf="@id/TimeLabel"
+        app:layout_constraintStart_toEndOf="@id/TimeLabel"
+        tools:autofillHints="Date" />
+
+    <Button
+        android:id="@+id/SelectTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonColor"
+        android:insetLeft="8dp"
+        app:cornerRadius="8dp"
+        app:icon="@drawable/ic_baseline_access_time_24"
+        app:layout_constraintBottom_toBottomOf="@id/EditTime"
+        app:layout_constraintStart_toEndOf="@id/EditTime" />
+
+    <TextView
+        android:id="@+id/WeightLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Weight: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintStart_toStartOf="@id/DateLabel"
+        app:layout_constraintTop_toBottomOf="@id/TimeLabel" />
+
+    <EditText
+        android:id="@+id/EditWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="3"
+        android:inputType="number"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintBottom_toBottomOf="@id/WeightLabel"
+        app:layout_constraintStart_toEndOf="@id/WeightLabel"
+        tools:autofillHints="Date" />
+
+    <TextView
+        android:id="@+id/GramLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="g"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintStart_toEndOf="@id/EditWeight"
+        app:layout_constraintBottom_toBottomOf="@id/EditWeight" />
+
+    <TextView
+        android:id="@+id/NotesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Notes: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintStart_toStartOf="@id/DateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/WeightLabel" />
+
+    <EditText
+        android:id="@+id/InputNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:lines="2"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintBottom_toBottomOf="@+id/NotesLabel"
+        app:layout_constraintStart_toEndOf="@+id/NotesLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

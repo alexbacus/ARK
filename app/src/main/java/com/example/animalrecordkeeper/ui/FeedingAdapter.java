@@ -62,7 +62,7 @@ public class FeedingAdapter extends RecyclerView.Adapter<FeedingAdapter.FeedingV
     public void onBindViewHolder(FeedingAdapter.FeedingViewHolder holder, int position) {
         if (mFeedings != null) {
             FeedingEntity current = mFeedings.get(position);
-            holder.feedingItemView.setText(current.getDate());
+            holder.feedingItemView.setText(current.getDate() + " " + current.getTime());
         }
         else {
             holder.feedingItemView.setText("No feedings");
