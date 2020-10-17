@@ -2,6 +2,8 @@ package com.example.animalrecordkeeper.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,12 @@ import com.example.animalrecordkeeper.R;
 import com.example.animalrecordkeeper.ViewModel.AnimalViewModel;
 import com.example.animalrecordkeeper.ViewModel.FeedingViewModel;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.util.Date;
 import java.util.List;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder> {
@@ -79,7 +87,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
     @Override
     public void onBindViewHolder(AnimalAdapter.AnimalViewHolder holder, int position) {
-        if (mAnimals != null) {
+        if (!mAnimals.isEmpty()) {
             AnimalEntity current = mAnimals.get(position);
             String recentFeeding = current.getRecentFeeding();
             if (recentFeeding == null) {
@@ -89,6 +97,35 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                 recentFeeding = ", " + recentFeeding;
             }
             String text = current.getName() + ", " + current.getSpecies() + ", " + current.getGender() + recentFeeding;
+            if (recentFeeding != null || recentFeeding != " ") {
+                String input = current.getRecentFeeding();
+                //Format of the date defined in the input String
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
+                //Desired format: 24 hour format: Change the pattern as per the need
+                DateFormat outputformat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+                Date date = null;
+                Date now = new Date();
+                String output = null;
+                try{
+                    //Converting the input String to Date
+                    date= df.parse(input);
+                    if (now.toInstant().isBefore((date.toInstant().plus(4, ChronoUnit.HOURS)))) {
+                        holder.animalItemView.setBackgroundColor(Color.parseColor("#A5E6BA"));
+                    }
+                    else {
+                        holder.animalItemView.setBackgroundColor(Color.parseColor("#FF0000"));
+                    }
+                    //Changing the format of date and storing it in String
+                    output = outputformat.format(date);
+                    //Displaying the date
+                    System.out.println(output);
+                }catch(ParseException pe){
+                    pe.printStackTrace();
+                }
+            }
+            else {
+                holder.animalItemView.setBackgroundColor(Color.parseColor("#FF0000"));
+            }
             holder.animalItemView.setText(text);
         }
         else {

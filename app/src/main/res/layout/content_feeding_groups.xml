@@ -9,25 +9,14 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
-        android:id="@+id/InfoLabel1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Red indicates a group HAS NOT been fed in the last 4 hours."
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        />
-
-    <TextView
         android:id="@+id/InfoLabel2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Green indicates a group HAS been fed in the last 4 hours."
+        android:text="Tap a group to select animals to feed."
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/InfoLabel1"
+        app:layout_constraintTop_toTopOf="parent"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         />
 
