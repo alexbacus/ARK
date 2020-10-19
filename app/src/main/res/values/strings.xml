@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Animal Record Keeper</string>
+    <string name="app_name">ARK</string>
     <string name="enter_otp"><font size="30">This can be left empty.</font></string>
 </resources>

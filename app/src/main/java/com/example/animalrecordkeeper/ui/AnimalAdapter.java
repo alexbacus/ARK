@@ -87,7 +87,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
     @Override
     public void onBindViewHolder(AnimalAdapter.AnimalViewHolder holder, int position) {
-        if (!mAnimals.isEmpty()) {
+        if (mAnimals != null) {
             AnimalEntity current = mAnimals.get(position);
             String recentFeeding = current.getRecentFeeding();
             if (recentFeeding == null) {
@@ -97,7 +97,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                 recentFeeding = ", " + recentFeeding;
             }
             String text = current.getName() + ", " + current.getSpecies() + ", " + current.getGender() + recentFeeding;
-            if (recentFeeding != null || recentFeeding != " ") {
+            if (current.getRecentFeeding() != null) {
                 String input = current.getRecentFeeding();
                 //Format of the date defined in the input String
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
