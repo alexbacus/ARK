@@ -39,6 +39,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="4dp"
         android:ems="8"
+        android:hint="@string/search_hint"
         android:inputType="textPersonName"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintBottom_toBottomOf="@id/SearchLabel"

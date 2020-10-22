@@ -70,6 +70,12 @@ public class AnimalManagementRepository {
         });
     }
 
+    public void deleteFeeding(int id) {
+        AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
+            mFeedingDao.deleteById(id);
+        });
+    }
+
     public LiveData<List<AnimalEntity>> searchAnimals(String name) {
         mAnimalDao = db.animalDAO();
         return mAnimalDao.getAnimalByName(name);

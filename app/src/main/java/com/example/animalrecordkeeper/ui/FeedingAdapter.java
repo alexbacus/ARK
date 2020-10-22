@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animalrecordkeeper.Entities.FeedingEntity;
-import com.example.animalrecordkeeper.Entities.GroupEntity;
-import com.example.animalrecordkeeper.GroupDetail;
+import com.example.animalrecordkeeper.FeedingActivity;
 import com.example.animalrecordkeeper.R;
 
 import java.util.List;
@@ -28,13 +27,14 @@ public class FeedingAdapter extends RecyclerView.Adapter<FeedingAdapter.FeedingV
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     final FeedingEntity current = mFeedings.get(position);
-                    Intent intent = new Intent(context, GroupDetail.class);
+                    Intent intent = new Intent(context, FeedingActivity.class);
                     intent.putExtra("feedingId", current.getFeedingId());
                     intent.putExtra("date", current.getDate());
                     intent.putExtra("time", current.getTime());
                     intent.putExtra("weight", current.getWeight());
                     intent.putExtra("notes", current.getNotes());
                     intent.putExtra("animalId", current.getAnimalId());
+                    intent.putExtra("basicStatus", current.getBasicStatus());
                     intent.putExtra("position", position);
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     context.startActivity(intent);

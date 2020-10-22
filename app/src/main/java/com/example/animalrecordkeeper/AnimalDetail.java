@@ -1,9 +1,10 @@
 package com.example.animalrecordkeeper;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -156,8 +156,22 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAnimalViewModel.delete(getIntent().getIntExtra("animalId", -1));
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(AnimalDetail.this);
+                builder.setTitle("Confirm deletion");
+                builder.setMessage("Are you sure you would like to delete this animal record?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        mAnimalViewModel.delete(getIntent().getIntExtra("animalId", -1));
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        return;
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }
@@ -278,7 +292,7 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
 
         statusList.add("Healthy");
         statusList.add("Injured");
-        statusList.add("Ill");
+        statusList.add("Sick");
         statusList.add("Aspirated");
         statusList.add("Unknown");
 

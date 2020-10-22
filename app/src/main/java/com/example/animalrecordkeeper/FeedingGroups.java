@@ -1,8 +1,6 @@
 package com.example.animalrecordkeeper;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.animalrecordkeeper.Entities.GroupEntity;
 import com.example.animalrecordkeeper.ViewModel.GroupViewModel;
 import com.example.animalrecordkeeper.ui.GroupAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 

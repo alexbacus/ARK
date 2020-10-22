@@ -24,7 +24,7 @@ public class FeedingViewModel extends AndroidViewModel {
     public void insert(FeedingEntity feedingEntity){
         mRepository.insert(feedingEntity);
     }
-//    public void delete(int id) { mRepository.deleteFeeding(id); }
+    public void delete(int id) { mRepository.deleteFeeding(id); }
     public int lastID(){
         return mAllFeedings.getValue().size();
     }

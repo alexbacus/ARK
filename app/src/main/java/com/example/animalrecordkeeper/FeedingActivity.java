@@ -11,29 +11,20 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.animalrecordkeeper.Entities.AnimalEntity;
 import com.example.animalrecordkeeper.Entities.FeedingEntity;
-import com.example.animalrecordkeeper.Entities.GroupEntity;
 import com.example.animalrecordkeeper.ViewModel.AnimalViewModel;
 import com.example.animalrecordkeeper.ViewModel.FeedingViewModel;
-import com.example.animalrecordkeeper.ui.AnimalAdapter;
 import com.example.animalrecordkeeper.ui.FeedingAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class FeedingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     public static final int NEW_GROUP_ACTIVITY_REQUEST_CODE = 1;
@@ -67,6 +58,7 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
 
         setUpDatePicker();
         setUpTimePicker();
+        initFeeding();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +67,80 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
                 saveFeeding();
             }
         });
+
+        FloatingActionButton delete = findViewById(R.id.delete);
+        if (getIntent().getIntExtra("feedingId", -1) == -1) {
+            delete.setVisibility(View.INVISIBLE);
+        }
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFeedingViewModel.delete(getIntent().getIntExtra("feedingId", -1));
+                mAnimalViewModel.updateRecentFeeding(null, getIntent().getIntExtra("animalId", -1));
+                finish();
+            }
+        });
+        editWeight.requestFocus();
     }
 
+    public void initFeeding() {
+        int id=getIntent().getIntExtra("feedingId",-1);
+        editDate = findViewById(R.id.EditDate);
+        editTime = findViewById(R.id.EditTime);
+        editWeight = findViewById(R.id.EditWeight);
+        editNotes = findViewById(R.id.InputNotes);
+        if (id != -1) {
+            editDate.setText(getIntent().getStringExtra("date"));
+            editTime.setText(getIntent().getStringExtra("time"));
+            editWeight.setText(String.valueOf(getIntent().getIntExtra("weight", 1)));
+            editNotes.setText(getIntent().getStringExtra("notes"));
+        }
+        else {
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month = month + 1);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            String currentDateString;
+            String monthStr;
+            String dayStr;
+            if (month < 10) {
+                monthStr = "0" + month;
+            }
+            else {
+                monthStr = String.valueOf(month);
+            }
+
+            if (dayOfMonth < 10) {
+                dayStr = "0" + dayOfMonth;
+            }
+            else {
+                dayStr = String.valueOf(dayOfMonth);
+            }
+
+            currentDateString = year + "-" + monthStr + "-" + dayStr;
+            editDate.setText(currentDateString);
+            String amPm;
+            if (calendar.get(Calendar.AM_PM) == 0) {
+                amPm = "AM";
+            }
+            else {
+                amPm = "PM";
+            }
+            editTime.setText( calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE) + " " + amPm);
+        }
+    }
+
+
     public void saveFeeding() {
+        if (!validate()) {
+            Toast error = Toast.makeText(getApplicationContext(), "Date, Time, and Weight are required.", Toast.LENGTH_LONG);
+            error.show();
+            return;
+        }
         Intent intent = new Intent();
         String date = editDate.getText().toString();
         String time = editTime.getText().toString();
@@ -95,12 +158,24 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
             id = (mFeedingViewModel.lastID()) + 1;
         }
         intent.putExtra("feedingId", id);
-        FeedingEntity feeding = new FeedingEntity(id, date, time, weight, notes, animalId);
-        String recentFeeding = date + " " + time;
+        FeedingEntity feeding = new FeedingEntity(id, date, time, weight, notes, animalId, BasicStatus.ACTIVE.getValue());
+        String recentFeeding = weight + "g, " + date + " " + time;
         mFeedingViewModel.insert(feeding);
         mAnimalViewModel.updateRecentFeeding(recentFeeding, getIntent().getIntExtra("animalId", -1));
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    public boolean validate() {
+        boolean isValid = true;
+        editDate = findViewById(R.id.EditDate);
+        editTime = findViewById(R.id.EditTime);
+        String date = editDate.getText().toString();
+        String time = editTime.getText().toString();
+        if (date.equals("") || time.equals("") || editWeight.getText().toString().equals("")) {
+            isValid = false;
+        }
+        return isValid;
     }
 
     private void setUpDatePicker(){
@@ -160,7 +235,6 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
     @Override
     public void onTimeSet(TimePicker view, int hour, int minute) {
         String strHour=String.valueOf(hour), strMin=String.valueOf(minute), strAM_PM;
-        // if(strHour.length()==1) strHour="0" + strHour;
         if(strMin.length()==1) strMin="0" + strMin;
 
         if(hour==0){

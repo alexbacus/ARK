@@ -13,14 +13,16 @@ public class FeedingEntity {
     private int weight;
     private String notes;
     private int animalId;
+    private int basicStatus;
 
-    public FeedingEntity(int feedingId, String date, String time, int weight, String notes, int animalId) {
+    public FeedingEntity(int feedingId, String date, String time, int weight, String notes, int animalId, int basicStatus) {
         this.feedingId = feedingId;
         this.date = date;
         this.time = time;
         this.weight = weight;
         this.notes = notes;
         this.animalId = animalId;
+        this.basicStatus = basicStatus;
     }
 
     public int getFeedingId() {
@@ -69,5 +71,13 @@ public class FeedingEntity {
 
     public void setAnimalId(int animalId) {
         this.animalId = animalId;
+    }
+
+    public int getBasicStatus() {
+        return basicStatus;
+    }
+
+    public void setBasicStatus(int basicStatus) {
+        this.basicStatus = basicStatus;
     }
 }

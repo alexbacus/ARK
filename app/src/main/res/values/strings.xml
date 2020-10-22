@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ARK</string>
     <string name="enter_otp"><font size="30">This can be left empty.</font></string>
+    <string name="search_hint"><font size="20">Search by species or name.</font></string>
 </resources>

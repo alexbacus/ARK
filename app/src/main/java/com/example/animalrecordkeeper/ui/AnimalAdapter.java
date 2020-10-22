@@ -3,33 +3,24 @@ package com.example.animalrecordkeeper.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animalrecordkeeper.AnimalDetail;
 import com.example.animalrecordkeeper.Entities.AnimalEntity;
-import com.example.animalrecordkeeper.Entities.FeedingEntity;
 import com.example.animalrecordkeeper.FeedingActivity;
-import com.example.animalrecordkeeper.FeedingAnimals;
 import com.example.animalrecordkeeper.GroupDetail;
 import com.example.animalrecordkeeper.ManageAnimalsActivity;
-import com.example.animalrecordkeeper.ManageGroupsActivity;
 import com.example.animalrecordkeeper.R;
-import com.example.animalrecordkeeper.ViewModel.AnimalViewModel;
-import com.example.animalrecordkeeper.ViewModel.FeedingViewModel;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +37,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                     int position = getAdapterPosition();
                     final AnimalEntity current = mAnimals.get(position);
                     Intent intent;
-                    if(context.getClass() == ManageAnimalsActivity.class) {
+                    if(context.getClass() == ManageAnimalsActivity.class || context.getClass() == GroupDetail.class) {
                         intent = new Intent(context, AnimalDetail.class);
                     }
                     else {
@@ -90,15 +81,30 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         if (mAnimals != null) {
             AnimalEntity current = mAnimals.get(position);
             String recentFeeding = current.getRecentFeeding();
+            int feedingDate = 0;
+            String weight;
+
             if (recentFeeding == null) {
                 recentFeeding = " ";
+                weight = " ";
             }
             else {
                 recentFeeding = ", " + recentFeeding;
+                feedingDate = current.getRecentFeeding().indexOf(", ") + 1;
+                weight = ", " + current.getRecentFeeding().substring(0, feedingDate - 1);
             }
-            String text = current.getName() + ", " + current.getSpecies() + ", " + current.getGender() + recentFeeding;
+
+            String text;
+
+            if(context.getClass() == ManageAnimalsActivity.class || context.getClass() == GroupDetail.class) {
+                text = current.getName() + ": " + current.getSpecies() + ", " + current.getGender() + weight;
+            }
+            else {
+                text = current.getName() + ": " + current.getSpecies() + ", " + current.getGender() + recentFeeding;
+            }
+
             if (current.getRecentFeeding() != null) {
-                String input = current.getRecentFeeding();
+                String input = current.getRecentFeeding().substring(feedingDate);
                 //Format of the date defined in the input String
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
                 //Desired format: 24 hour format: Change the pattern as per the need
@@ -117,8 +123,6 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                     }
                     //Changing the format of date and storing it in String
                     output = outputformat.format(date);
-                    //Displaying the date
-                    System.out.println(output);
                 }catch(ParseException pe){
                     pe.printStackTrace();
                 }
