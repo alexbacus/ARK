@@ -90,4 +90,9 @@ public class AnimalManagementRepository {
         mAnimalDao = db.animalDAO();
         mAnimalDao.updateRecentFeeding(recentFeeding, animalId);
     }
+
+    public LiveData<List<FeedingEntity>> getFeedingsByAnimalId(int id) {
+        mFeedingDao = db.feedingDAO();
+        return mFeedingDao.getFeedingsByAnimalId(id);
+    }
 }

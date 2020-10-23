@@ -1,7 +1,9 @@
 package com.example.animalrecordkeeper;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +41,7 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
     private TextView editTime;
     private EditText editWeight;
     private EditText editNotes;
+    private Button calculateBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
         mAnimalViewModel = new ViewModelProvider(this).get(AnimalViewModel.class);
         editWeight = findViewById(R.id.EditWeight);
         editNotes = findViewById(R.id.InputNotes);
+        calculateBtn = findViewById(R.id.CalculateBtn);
 
         mFeedingViewModel.getAllFeedings().observe(this, feedings -> adapter.setFeedings(feedings));
 
@@ -78,6 +82,49 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
                 mFeedingViewModel.delete(getIntent().getIntExtra("feedingId", -1));
                 mAnimalViewModel.updateRecentFeeding(null, getIntent().getIntExtra("animalId", -1));
                 finish();
+            }
+        });
+
+        calculateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editWeight = findViewById(R.id.EditWeight);
+                float amount = 0;
+                int weight = 0;
+                AlertDialog.Builder builder = new AlertDialog.Builder(FeedingActivity.this);
+                if (editWeight.getText().toString().equals("")) {
+                    builder.setTitle("Error - Weight cannot be left empty");
+                    builder.setMessage("Please enter a weight and try again.");
+                }
+                else {
+                    weight = Integer.parseInt(editWeight.getText().toString());
+                    if (weight <= 40) {
+                        amount = Math.round((weight*(5.0f/100.0f)));
+                    }
+                    if (weight > 40 && weight <= 90) {
+                        amount = Math.round((weight*(6.0f/100.0f)));
+                    }
+                    if (weight > 90 && weight <= 150) {
+                        amount = Math.round((weight*(7.0f/100.0f)));
+                    }
+                    if (weight > 150) {
+                        amount = -1;
+                    }
+
+                    if (amount == -1) {
+                        builder.setMessage("This squirrel can be free-fed formula. (Feed until it is full)");
+                    }
+                    else {
+                        builder.setMessage("This squirrel should be fed: " + amount + "ml.");
+                    }
+                }
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        return;
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
         editWeight.requestFocus();

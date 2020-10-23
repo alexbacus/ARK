@@ -23,4 +23,7 @@ public interface FeedingDAO {
 
     @Query("UPDATE feeding_table SET basicStatus = 2 WHERE feedingId == :id")
     void deleteById(int id);
+
+    @Query("SELECT * FROM feeding_table WHERE animalId == :id AND basicStatus != 2 ORDER BY feedingId ASC")
+    LiveData<List<FeedingEntity>> getFeedingsByAnimalId(int id);
 }

@@ -4,7 +4,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -202,6 +206,11 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
     }
 
     public void saveAnimal() {
+        if(!validate()) {
+            Toast error = Toast.makeText(getApplicationContext(), "Date received is required.", Toast.LENGTH_LONG);
+            error.show();
+            return;
+        }
         Intent intent = new Intent();
         int id=getIntent().getIntExtra("animalId",-1);
         int basicStatus = BasicStatus.ACTIVE.getValue();
@@ -224,7 +233,7 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("recentFeeding", getIntent().getStringExtra("recentFeeding"));
         intent.putExtra("animalId", id);
         int groupId = 0;
-        if (!group.isEmpty() && group != "None") {
+        if (!group.isEmpty() && !group.equals("None") && !status.equals("RIP")) {
             if (!groupEntities.isEmpty()) {
                 for(GroupEntity g: groupEntities) {
                     if (g.getName() == group) {
@@ -233,13 +242,21 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
                 }
             }
         }
-        else if (!group.isEmpty() && group == "None") {
+        else if (!group.isEmpty() && group.equals("None") || status.equals("RIP")) {
             groupId = 0;
         }
         AnimalEntity animal = new AnimalEntity(id, name, received, species, gender, status, groupId, note, getIntent().getStringExtra("recentFeeding"), basicStatus);
         mAnimalViewModel.insert(animal);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    private boolean validate() {
+        boolean isValid = true;
+        if (dateReceived.getText().toString().equals("")) {
+            isValid = false;
+        }
+        return isValid;
     }
 
     private void setUpSpinners() {
@@ -294,7 +311,7 @@ public class AnimalDetail extends AppCompatActivity implements DatePickerDialog.
         statusList.add("Injured");
         statusList.add("Sick");
         statusList.add("Aspirated");
-        statusList.add("Unknown");
+        statusList.add("RIP");
 
         ArrayAdapter<String> statusDataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, statusList);
 

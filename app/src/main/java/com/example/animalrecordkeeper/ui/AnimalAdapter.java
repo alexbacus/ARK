@@ -13,9 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.animalrecordkeeper.AnimalDetail;
 import com.example.animalrecordkeeper.Entities.AnimalEntity;
 import com.example.animalrecordkeeper.FeedingActivity;
+import com.example.animalrecordkeeper.FeedingAnimals;
 import com.example.animalrecordkeeper.GroupDetail;
 import com.example.animalrecordkeeper.ManageAnimalsActivity;
 import com.example.animalrecordkeeper.R;
+import com.example.animalrecordkeeper.SpecificAnimalList;
+import com.example.animalrecordkeeper.SpecificAnimalReport;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -39,6 +42,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                     Intent intent;
                     if(context.getClass() == ManageAnimalsActivity.class || context.getClass() == GroupDetail.class) {
                         intent = new Intent(context, AnimalDetail.class);
+                    }
+                    else if(context.getClass() == SpecificAnimalList.class) {
+                        intent = new Intent(context, SpecificAnimalReport.class);
                     }
                     else {
                         intent = new Intent(context, FeedingActivity.class);
@@ -96,14 +102,14 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
             String text;
 
-            if(context.getClass() == ManageAnimalsActivity.class || context.getClass() == GroupDetail.class) {
+            if(context.getClass() == ManageAnimalsActivity.class || context.getClass() == GroupDetail.class || context.getClass() == SpecificAnimalList.class) {
                 text = current.getName() + ": " + current.getSpecies() + ", " + current.getGender() + weight;
             }
             else {
                 text = current.getName() + ": " + current.getSpecies() + ", " + current.getGender() + recentFeeding;
             }
 
-            if (current.getRecentFeeding() != null) {
+            if (current.getRecentFeeding() != null && context.getClass() == FeedingAnimals.class) {
                 String input = current.getRecentFeeding().substring(feedingDate);
                 //Format of the date defined in the input String
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
@@ -128,7 +134,12 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                 }
             }
             else {
-                holder.animalItemView.setBackgroundColor(Color.parseColor("#FF0000"));
+                if (context.getClass() == FeedingAnimals.class) {
+                    holder.animalItemView.setBackgroundColor(Color.parseColor("#FF0000"));
+                }
+                else {
+                    holder.animalItemView.setBackgroundColor(Color.parseColor("#A5E6BA"));
+                }
             }
             holder.animalItemView.setText(text);
         }

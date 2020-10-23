@@ -30,12 +30,28 @@
             android:label="Feeding Groups"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-        android:name=".FeedingAnimals"
-        android:label="Feeding Animals"
-        android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".FeedingAnimals"
+            android:label="Feeding Animals"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FeedingActivity"
             android:label="New Feeding Record"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReportingActivity"
+            android:label="Generate New Report"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AllAnimalsReport"
+            android:label="Report -- All Animals"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SpecificAnimalList"
+            android:label="Report -- Animal List"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SpecificAnimalReport"
+            android:label="Report -- Specific Animal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

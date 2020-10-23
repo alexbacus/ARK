@@ -28,4 +28,5 @@ public class FeedingViewModel extends AndroidViewModel {
     public int lastID(){
         return mAllFeedings.getValue().size();
     }
+    public LiveData<List<FeedingEntity>> getFeedingsByAnimalId(int id) { return mRepository.getFeedingsByAnimalId(id); }
 }

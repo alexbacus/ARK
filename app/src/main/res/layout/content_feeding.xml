@@ -98,6 +98,19 @@
         app:layout_constraintStart_toEndOf="@id/WeightLabel"
         tools:autofillHints="Date" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/CalculateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:background="@color/buttonColor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:insetLeft="8dp"
+        android:text="Calculate"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/GramLabel"
+        app:layout_constraintStart_toEndOf="@id/GramLabel" />
+
     <TextView
         android:id="@+id/GramLabel"
         android:layout_width="wrap_content"
