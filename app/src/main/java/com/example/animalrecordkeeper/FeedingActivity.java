@@ -42,6 +42,7 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
     private EditText editWeight;
     private EditText editNotes;
     private Button calculateBtn;
+    private int weight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,28 +90,15 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
             @Override
             public void onClick(View view) {
                 editWeight = findViewById(R.id.EditWeight);
-                float amount = 0;
-                int weight = 0;
                 AlertDialog.Builder builder = new AlertDialog.Builder(FeedingActivity.this);
                 if (editWeight.getText().toString().equals("")) {
+                    weight = -1;
                     builder.setTitle("Error - Weight cannot be left empty");
                     builder.setMessage("Please enter a weight and try again.");
                 }
                 else {
                     weight = Integer.parseInt(editWeight.getText().toString());
-                    if (weight <= 40) {
-                        amount = Math.round((weight*(5.0f/100.0f)));
-                    }
-                    if (weight > 40 && weight <= 90) {
-                        amount = Math.round((weight*(6.0f/100.0f)));
-                    }
-                    if (weight > 90 && weight <= 150) {
-                        amount = Math.round((weight*(7.0f/100.0f)));
-                    }
-                    if (weight > 150) {
-                        amount = -1;
-                    }
-
+                    float amount = calculateAmount(weight);
                     if (amount == -1) {
                         builder.setMessage("This squirrel can be free-fed formula. (Feed until it is full)");
                     }
@@ -128,6 +116,23 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
             }
         });
         editWeight.requestFocus();
+    }
+
+    public static float calculateAmount(int weight) {
+        float amount = 0;
+        if (weight <= 40) {
+            amount = weight*(5.0f/100.0f);
+        }
+        if (weight > 40 && weight <= 90) {
+            amount = weight*(6.0f/100.0f);
+        }
+        if (weight > 90 && weight <= 150) {
+            amount = weight*(7.0f/100.0f);
+        }
+        if (weight > 150) {
+            amount = -1;
+        }
+        return amount;
     }
 
     public void initFeeding() {
