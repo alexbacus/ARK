@@ -53,6 +53,14 @@
             android:name=".SpecificAnimalReport"
             android:label="Report -- Specific Animal"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ManageIntakeForms"
+            android:label="Manage Intake Forms"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".IntakeFormDetail"
+            android:label="Intake Form"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,9 +7,11 @@ import androidx.lifecycle.LiveData;
 import com.example.animalrecordkeeper.DAO.AnimalDAO;
 import com.example.animalrecordkeeper.DAO.FeedingDAO;
 import com.example.animalrecordkeeper.DAO.GroupDAO;
+import com.example.animalrecordkeeper.DAO.IntakeFormDAO;
 import com.example.animalrecordkeeper.Entities.AnimalEntity;
 import com.example.animalrecordkeeper.Entities.FeedingEntity;
 import com.example.animalrecordkeeper.Entities.GroupEntity;
+import com.example.animalrecordkeeper.Entities.IntakeFormEntity;
 
 import java.util.List;
 
@@ -17,9 +19,11 @@ public class AnimalManagementRepository {
     private GroupDAO mGroupDao;
     private AnimalDAO mAnimalDao;
     private FeedingDAO mFeedingDao;
+    private IntakeFormDAO mIntakeFormDao;
     private LiveData<List<GroupEntity>> mAllGroups;
     private LiveData<List<AnimalEntity>> mAllAnimals;
     private LiveData<List<FeedingEntity>> mAllFeedings;
+    private LiveData<List<IntakeFormEntity>> mAllIntakeForms;
     AnimalManagementDatabase db;
 
     public AnimalManagementRepository(Application application) {
@@ -30,6 +34,8 @@ public class AnimalManagementRepository {
         mAllAnimals = mAnimalDao.getAllAnimals();
         mFeedingDao = db.feedingDAO();
         mAllFeedings = mFeedingDao.getAllFeedings();
+        mIntakeFormDao = db.intakeFormDAO();
+        mAllIntakeForms = mIntakeFormDao.getAllIntakeForms();
     }
 
     public LiveData<List<GroupEntity>> getAllGroups() {
@@ -39,6 +45,8 @@ public class AnimalManagementRepository {
     public LiveData<List<AnimalEntity>> getAllAnimals() { return mAllAnimals; }
 
     public LiveData<List<FeedingEntity>> getAllFeedings() { return mAllFeedings; }
+
+    public LiveData<List<IntakeFormEntity>> getAllIntakeForms() { return mAllIntakeForms; }
 
     public void insert(GroupEntity group) {
         AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
@@ -58,6 +66,12 @@ public class AnimalManagementRepository {
         });
     }
 
+    public void insert(IntakeFormEntity intakeForm) {
+        AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
+            mIntakeFormDao.insert(intakeForm);
+        });
+    }
+
     public void deleteAnimal(int id) {
         AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
             mAnimalDao.deleteById(id);
@@ -73,6 +87,12 @@ public class AnimalManagementRepository {
     public void deleteFeeding(int id) {
         AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
             mFeedingDao.deleteById(id);
+        });
+    }
+
+    public void deleteIntakeForm(int id) {
+        AnimalManagementDatabase.databaseWriteExecutor.execute(() -> {
+            mIntakeFormDao.deleteById(id);
         });
     }
 

@@ -60,4 +60,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/StartFeedingBtn" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/IntakeFormsBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="290dp"
+        android:layout_marginTop="142dp"
+        android:background="@color/buttonColor"
+        android:text="Intake Forms"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ReportingBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

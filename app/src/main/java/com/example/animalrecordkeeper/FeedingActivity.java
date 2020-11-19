@@ -129,7 +129,7 @@ public class FeedingActivity extends AppCompatActivity implements DatePickerDial
         if (weight > 90 && weight <= 150) {
             amount = weight*(7.0f/100.0f);
         }
-        if (weight > 150) {
+        if (weight > 250) {
             amount = -1;
         }
         return amount;

@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#92A3D2"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:id="@+id/AverageCostLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="25dp"
+        android:text="The average cost per patient is $200."
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/DonationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donation Amount:"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <TextView
+        android:id="@+id/Label25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$25"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="@id/DonationLabel"
+        app:layout_constraintStart_toEndOf="@id/DonationLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <CheckBox
+        android:id="@+id/Donation25"
+        android:layout_width="37dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="12dp"
+        android:scaleX="3.0"
+        android:scaleY="3.0"
+        app:layout_constraintBottom_toBottomOf="@id/DonationLabel"
+        app:layout_constraintStart_toEndOf="@id/Label25"
+        android:onClick="setShowOnFeeding" />
+
+    <TextView
+        android:id="@+id/Label50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$50"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="@id/DonationLabel"
+        app:layout_constraintStart_toEndOf="@id/Donation25"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <CheckBox
+        android:id="@+id/Donation50"
+        android:layout_width="37dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="12dp"
+        android:scaleX="3.0"
+        android:scaleY="3.0"
+        app:layout_constraintBottom_toBottomOf="@id/DonationLabel"
+        app:layout_constraintStart_toEndOf="@id/Label50"
+        android:onClick="setShowOnFeeding" />
+
+    <TextView
+        android:id="@+id/Label100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$100"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="@id/DonationLabel"
+        app:layout_constraintStart_toEndOf="@id/Donation50"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <CheckBox
+        android:id="@+id/Donation100"
+        android:layout_width="37dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="12dp"
+        android:scaleX="3.0"
+        android:scaleY="3.0"
+        app:layout_constraintBottom_toBottomOf="@id/DonationLabel"
+        app:layout_constraintStart_toEndOf="@id/Label100"
+        android:onClick="setShowOnFeeding" />
+
+    <TextView
+        android:id="@+id/LabelOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other:"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/Label25"
+        app:layout_constraintStart_toStartOf="@id/Label25"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/DonationOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="3"
+        android:focusedByDefault="true"
+        android:inputType="number"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelOther"
+        app:layout_constraintStart_toEndOf="@id/LabelOther" />
+
+    <TextView
+        android:id="@+id/TypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donation Type"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelOther"
+        app:layout_constraintStart_toStartOf="@id/LabelOther"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <Spinner
+        android:id="@+id/TypeSpinner"
+        android:layout_width="167dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="20dp"
+        android:popupBackground="@color/colorAccent"
+        style="@android:style/Widget.Material.Light.Spinner.Underlined"
+        app:layout_constraintBottom_toBottomOf="@+id/TypeLabel"
+        app:layout_constraintStart_toEndOf="@+id/TypeLabel"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/LabelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/TypeSpinner"
+        app:layout_constraintStart_toStartOf="@id/DonationLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="10"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelName"
+        app:layout_constraintStart_toEndOf="@id/LabelName" />
+
+    <TextView
+        android:id="@+id/LabelEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelName"
+        app:layout_constraintStart_toStartOf="@id/DonationLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="10"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelEmail"
+        app:layout_constraintStart_toEndOf="@id/LabelEmail" />
+
+    <TextView
+        android:id="@+id/LabelAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelEmail"
+        app:layout_constraintStart_toStartOf="@id/DonationLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="15"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelAddress"
+        app:layout_constraintStart_toEndOf="@id/LabelAddress" />
+
+    <TextView
+        android:id="@+id/LabelCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelAddress"
+        app:layout_constraintStart_toStartOf="@id/DonationLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="4"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelCity"
+        app:layout_constraintStart_toEndOf="@id/LabelCity" />
+
+    <TextView
+        android:id="@+id/LabelState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="State:"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelAddress"
+        app:layout_constraintStart_toEndOf="@id/InputCity"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="2"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelState"
+        app:layout_constraintStart_toEndOf="@id/LabelState" />
+
+    <TextView
+        android:id="@+id/LabelZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zip:"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelAddress"
+        app:layout_constraintStart_toEndOf="@id/InputState"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="4"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelZip"
+        app:layout_constraintStart_toEndOf="@id/LabelZip" />
+
+    <TextView
+        android:id="@+id/LabelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelCity"
+        app:layout_constraintStart_toStartOf="@id/DonationLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="5"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelDate"
+        app:layout_constraintStart_toEndOf="@id/LabelDate" />
+
+    <TextView
+        android:id="@+id/LabelDateFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date Found:"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelCity"
+        app:layout_constraintStart_toEndOf="@id/InputDate"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputDateFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="5"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelDateFound"
+        app:layout_constraintStart_toEndOf="@id/LabelDateFound" />
+
+    <TextView
+        android:id="@+id/LabelSpecies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Species:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelDate"
+        app:layout_constraintStart_toStartOf="@id/DonationLabel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputSpecies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="5"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelSpecies"
+        app:layout_constraintStart_toEndOf="@id/LabelSpecies" />
+
+    <TextView
+        android:id="@+id/LabelAnimalAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location Found:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelSpecies"
+        app:layout_constraintStart_toStartOf="@id/LabelSpecies"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputAnimalAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="12"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelAnimalAddress"
+        app:layout_constraintStart_toEndOf="@id/LabelAnimalAddress" />
+
+    <TextView
+        android:id="@+id/LabelFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food/Water Given:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelAnimalAddress"
+        app:layout_constraintStart_toStartOf="@id/LabelAnimalAddress"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="10"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelFood"
+        app:layout_constraintStart_toEndOf="@id/LabelFood" />
+
+    <TextView
+        android:id="@+id/LabelMedications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medications Given:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelFood"
+        app:layout_constraintStart_toStartOf="@id/LabelFood"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputMedications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="10"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelMedications"
+        app:layout_constraintStart_toEndOf="@id/LabelMedications" />
+
+    <TextView
+        android:id="@+id/LabelCircumstances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Circumstances:"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/LabelMedications"
+        app:layout_constraintStart_toStartOf="@id/LabelMedications"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        />
+
+    <EditText
+        android:id="@+id/InputCircumstances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:ems="10"
+        android:focusedByDefault="true"
+        android:inputType="text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="@id/LabelCircumstances"
+        app:layout_constraintStart_toEndOf="@id/LabelCircumstances" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
